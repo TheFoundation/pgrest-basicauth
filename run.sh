@@ -8,6 +8,13 @@ echo "pgrest "$(caddy hash-password -p ${REST_PASS}) > /tmp/htpass
 IFS='\n'
 cat /etc/Caddyfile | while read line;do echo "$line"|grep -q HTPASS || echo "$line";echo "$line"|grep -q HTPASS && cat /tmp/htpass;done > /etc/caddy/Caddyfile
 
+[[ -z "$LOKI_URL"]] && {
 (cd /etc/caddy;caddy run ) &
 postgrest 
+}
+[[ -z "$LOKI_URL"]] || {
+(cd /etc/caddy;caddy run 2>&1 |bash /bash-logger/log-to-grafana-loki.sh "$LOKI_URL" pgrest-caddy ) &
+postgrest |bash /bash-logger/log-to-grafana-loki.sh "$LOKI_URL" pgrest
+}
+exit 0
 

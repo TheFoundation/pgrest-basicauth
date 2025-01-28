@@ -14,7 +14,7 @@ postgrest  ; } ;
 
 [[ -z "$LOKI_URL" ]] || {
 (cd /etc/caddy;caddy run 2>&1 |bash /bash-logger/log-to-grafana-loki.sh "$LOKI_URL" pgrest-caddy ) &
-postgrest |bash /bash-logger/log-to-grafana-loki.sh "$LOKI_URL" pgrest  ; } ;
+postgrest 2>&1 |bash /bash-logger/log-to-grafana-loki.sh "$LOKI_URL" pgrest  ; } ;
 
 exit 0
 

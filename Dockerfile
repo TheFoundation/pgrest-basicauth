@@ -8,4 +8,4 @@ RUN git clone https://gitlab.com/the-foundation/bash-logger.git /bash-logger
 COPY run.sh /
 COPY conf/Caddyfile /etc
 ENTRYPOINT /bin/bash /run.sh
-EXPOSE 8000
+EXPOSE 80

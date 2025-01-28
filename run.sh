@@ -12,7 +12,7 @@ cat /etc/Caddyfile | while read line;do echo "$line"|grep -q HTPASS || echo "$li
 (cd /etc/caddy;caddy run ) &
 postgrest  ; } ;
 
-[[ -z "$LOKI_URL"]] || {
+[[ -z "$LOKI_URL" ]] || {
 (cd /etc/caddy;caddy run 2>&1 |bash /bash-logger/log-to-grafana-loki.sh "$LOKI_URL" pgrest-caddy ) &
 postgrest |bash /bash-logger/log-to-grafana-loki.sh "$LOKI_URL" pgrest  ; } ;
 

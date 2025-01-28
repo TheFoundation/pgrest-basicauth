@@ -1,0 +1,45 @@
+{
+    log {
+        level ERROR
+    }
+}
+
+:80  {
+	bind	{ 
+		address 0.0.0.0 
+	}
+	# @not-options not method OPTIONS
+	@is-del   method DELETE
+	@is-post  method POST
+	@is-patch method PATCH
+    @cors_preflight {
+		method OPTIONS
+	}
+	respond @cors_preflight 204
+	
+    header {
+        Access-Control-Allow-Origin "*"
+        Access-Control-Allow-Methods GET,POST,OPTIONS,HEAD,PATCH,PUT,DELETE
+        Access-Control-Allow-Headers User-Agent,Content-Type,X-Api-Key,Authentication
+        Access-Control-Max-Age 86400
+    }
+	basic_auth @is-patch {
+		# Username "Bob", password "hiccup"
+		#Bob $2a$14$hNyMLa4Ylb2WrI18TMzNKO3EiYKqSDhXDDLn/llR1mY8teXEKTst.
+        HTPASS
+	} 	
+	basic_auth @is-post {
+		HTPASS
+	}
+	basic_auth @is-del {
+		HTPASS
+	}
+
+	reverse_proxy http://127.0.0.1:3000 {
+                #transport http {
+                #        tls_insecure_skip_verify
+                #}
+
+    }
+#	respond "Welcome, {http.auth.user.id}" 200
+}

@@ -2,7 +2,7 @@
 
 basic-authentitcation protected POSTGREST ( PGREST ) 
 
-for using pgrest a safe manner in apis with a single request ( no JWT Token generation necessary )
+for using pgrest a safe manner in APIs with a single request ( no JWT Token generation necessary )
 
 can presetnt GET requests without password as well ( set "PUBLIC_READ" to "TRUE" )
 ### example usage

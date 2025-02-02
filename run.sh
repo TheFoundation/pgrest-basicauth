@@ -6,7 +6,7 @@
 echo "pgrest "$(caddy hash-password -p ${REST_PASS}) |tee /tmp/htpass.read > /tmp/htpass
 
 
-[[ "PUBLIC_READ" ]] && { 
+[[ "$PUBLIC_READ" = "TRUE" ]] && { 
 	echo > /tmp/htpass.read
 	 }
 IFS='\n'

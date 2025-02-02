@@ -39,7 +39,9 @@
     }
 
         handle {
+        
         READHTPASS
+
 	reverse_proxy http://127.0.0.1:3000 {
                 #transport http {
                 #        tls_insecure_skip_verify

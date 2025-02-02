@@ -3,7 +3,11 @@
  REST_PASS=$(for rounds in $(seq 1 24);do tr -cd '[:alnum:]_\-.' < /dev/urandom  |head -c48;echo ;done|grep -e "_" -e "\-" -e "\."|grep ^[a-zA-Z0-9]|grep [a-zA-Z0-9]$|tail -n1)
  echo "MISSING REST_PASS ... temporarily set  to: $REST_PASS"
  } 
-echo "pgrest "$(caddy hash-password -p ${REST_PASS}) |tee /tmp/htpass.read > /tmp/htpass
+echo "pgrest "$(caddy hash-password -p ${REST_PASS}) |tee > /tmp/htpass
+
+(echo '	basic_auth @is-del {'
+cat /tmp/htpass
+'	}') /tmp/htpass.read
 
 
 [[ "$PUBLIC_READ" = "TRUE" ]] && { 

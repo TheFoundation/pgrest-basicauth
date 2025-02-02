@@ -7,7 +7,7 @@ echo "pgrest "$(caddy hash-password -p ${REST_PASS}) |tee > /tmp/htpass
 
 (echo '	basic_auth @is-del {'
 cat /tmp/htpass
-'	}') /tmp/htpass.read
+echo '	}') /tmp/htpass.read
 
 
 [[ "$PUBLIC_READ" = "TRUE" ]] && { 

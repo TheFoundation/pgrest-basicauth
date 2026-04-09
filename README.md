@@ -27,3 +27,11 @@ DELETE THE FIRST THINGY
 ```
 curl "127.0.0.1:8000/books?index=eq.1" -X DELETE -u pgrest:p9DRQSCYefqi09JmPSJoTHNTDr9N5ki8_gIdmAdwMdOY6vKG -s
 ```
+
+
+
+---
+
+<a href="https://the-foundation.gitlab.io/">
+<h3>A project of the foundation</h3>
+<div><img src="https://hcxi2.2ix.ch/github/TheFoundation/pgrest-basicauth/README.md/logo.jpg" width="480" height="270"/></div></a>
